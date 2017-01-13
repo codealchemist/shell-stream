@@ -61,7 +61,6 @@ module.exports = class Guest {
     // this.stream.pipe(process.stdout)
     let streamData = ''
     this.stream.on('data', (chunk) => {
-      // console.log('-- got stream data', chunk)
       streamData += chunk
       console.log(chunk.toString())
       this.rl.prompt()
