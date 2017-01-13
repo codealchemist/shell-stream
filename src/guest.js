@@ -58,12 +58,14 @@ module.exports = class Guest {
     process.stdin.pipe(this.stream)
 
     // pipe whatever is received to stdout
-    this.stream.pipe(process.stdout)
-    // let streamData = ''
-    // this.stream.on('data', (chunk) => {
-    //   console.log('-- got stream data', chunk)
-    //   streamData += chunk
-    // })
+    // this.stream.pipe(process.stdout)
+    let streamData = ''
+    this.stream.on('data', (chunk) => {
+      // console.log('-- got stream data', chunk)
+      streamData += chunk
+      console.log(chunk.toString())
+      this.rl.prompt()
+    })
     // this.stream.on('end', () => {
     //   console.log('-- stream end', streamData)
     //   console.log(streamData)
