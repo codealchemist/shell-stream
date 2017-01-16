@@ -2,7 +2,7 @@
 Simple remote shell which streams commands from guest to host and results the other way around.
 
 ## Install
-npm install -g shell-stream
+`npm install -g shell-stream`
 
 ## Start host
 
