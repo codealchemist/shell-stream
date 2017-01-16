@@ -1,14 +1,14 @@
 {
   "name": "shell-stream",
   "version": "1.0.0",
-  "description": "",
+  "description": "Simple remote shell which streams commands from guest to host and results the other way around.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
     "shell-stream": "bin/index.js"
-  }
+  },
   "author": "Alberto Miranda",
   "license": "MIT",
   "dependencies": {
