@@ -83,7 +83,7 @@ module.exports = class Guest {
 
     this.rl.on('line', (line) => {
       // const text = line.trim()
-      this.rl.prompt();
+      // this.rl.prompt();
     }).on('close', () => {
       console.log('Have a great day!');
       process.exit(0);
