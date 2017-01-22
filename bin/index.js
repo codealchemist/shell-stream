@@ -33,10 +33,10 @@ function showUsage () {
     USAGE:
 
     Start host:
-      stream-shell --host six
+      shell-stream --host HOSTNAME
 
     Connect guest:
-      stream-shell six
+      shell-stream HOSTNAME
   `)
 }
 
