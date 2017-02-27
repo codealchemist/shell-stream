@@ -46,15 +46,15 @@ module.exports = class Host {
     console.log()
 
     this.stream = udp({
-      address: '0.0.0.0', //address to bind to
-      unicast: ip, //unicast ip address to send to
-      port: 5556, //udp port to send to
-      bindingPort: 5555 , //udp port to listen on. Default: port
-      reuseAddr: true //boolean: allow multiple processes to bind to the same address and port. Default: true
+      address: '0.0.0.0', // address to bind to
+      unicast: ip, // unicast ip address to send to
+      port: 5556, // udp port to send to
+      bindingPort: 5555, // udp port to listen on. Default: port
+      reuseAddr: true // boolean: allow multiple processes to bind to the same address and port. Default: true
     })
 
     // create new process to run command on
-    this.spawn = require('child_process').spawn
+    this.spawn = require('child_process').spawn('sh')
 
     // set command line prompt
     this.rl = readline.createInterface({
@@ -68,14 +68,14 @@ module.exports = class Host {
       const text = line.trim()
       this.exec(text)
     }).on('close', () => {
-      console.log('Have a great day!');
-      process.exit(0);
+      console.log('Have a great day!')
+      process.exit(0)
     })
   }
 
   // function to run command on the new process
   exec (text) {
-    let command = this.spawn(text, [], {shell: true})
+    let command = this.spawn.spawn(text, [], {shell: true})
 
     // send command output to guest
     // command.stdout.pipe(this.stream)
@@ -95,7 +95,7 @@ module.exports = class Host {
       console.log(output) // local output
       this.stream.write(output) // remote output
       // this.stream.end('a')
-      this.rl.prompt();
+      this.rl.prompt()
     })
   }
 }
