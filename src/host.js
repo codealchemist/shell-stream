@@ -54,12 +54,6 @@ module.exports = class Host {
       reuseAddr: true // boolean: allow multiple processes to bind to the same address and port. Default: true
     })
 
-    // create new process to run command on
-    const osType = os.platform()
-    let shell = 'sh'
-    if (osType === 'win32') shell = 'powershell.exe'
-    this.spawn = require('child_process').spawn(shell)
-
     // set command line prompt
     this.rl = readline.createInterface({
       input: this.stream,
@@ -79,26 +73,24 @@ module.exports = class Host {
 
   // function to run command on the new process
   exec (text) {
-    let command = this.spawn.spawn(text, [], {shell: true})
+    // create new process to run command on
+    const osType = os.platform()
+    let shell = 'sh'
+    if (osType === 'win32') shell = 'powershell.exe'
+    this.child = require('child_process').spawn(text, [], {shell: true})
 
-    // send command output to guest
-    // command.stdout.pipe(this.stream)
-
-    // display local output
-    // command.stdout.pipe(process.stdout)
+    // // display local output
+    this.child.stdout.pipe(process.stdout)
 
     // show output locally
     let output = ''
-    command.stdout.on('data', (chunk) => {
+    this.child.stdout.on('data', (chunk) => {
       output += chunk
     })
-    command.stderr.on('data', (chunk) => {
-      output += chunk
-    })
-    command.on('close', () => {
-      console.log(output) // local output
+
+    this.child.on('close', () => {
+      // console.log(output) // local output
       this.stream.write(output) // remote output
-      // this.stream.end('a')
       this.rl.prompt()
     })
   }

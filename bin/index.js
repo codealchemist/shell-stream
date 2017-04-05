@@ -14,10 +14,12 @@ if (hasInvalidParams(params)) showUsage()
 
 if (params.host) {
   // start host
+  console.log('Starting host...')
   const Host = require(path.join(__dirname, '../src/host'))
   new Host(params.host)
 } else {
   // start guest
+  console.log('Starting guest...')
   const Guest = require(path.join(__dirname, '../src/guest'))
   new Guest(params._[0])
 }
