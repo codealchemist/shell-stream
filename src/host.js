@@ -3,6 +3,7 @@
 const udp = require('datagram-stream')
 const UdpNode = require('udp-node')
 const readline = require('readline')
+const os = require('os')
 
 module.exports = class Host {
   constructor (hostname) {
