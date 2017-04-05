@@ -10,19 +10,19 @@ console.info(art)
 
 // load params and validate them
 const params = require('minimist')(process.argv.slice(2))
-if (hasInvalidParams(params)) return showUsage()
+if (hasInvalidParams(params)) showUsage()
 
 if (params.host) {
   // start host
   const Host = require(path.join(__dirname, '../src/host'))
-  const host = new Host(params.host)
+  Host(params.host)
 } else {
   // start guest
   const Guest = require(path.join(__dirname, '../src/guest'))
-  const guest = new Guest(params._[0])
+  Guest(params._[0])
 }
 
-//------------------------------------------------------------------------
+// ------------------------------------------------------------------------
 
 function hasInvalidParams (params) {
   return (!params.host && !params['_'].length)
@@ -33,10 +33,11 @@ function showUsage () {
     USAGE:
 
     Start host:
-      stream-shell --host six
+      shell-stream --host HOSTNAME
 
     Connect guest:
-      stream-shell six
+      shell-stream HOSTNAME
   `)
+  process.exit()
 }
 

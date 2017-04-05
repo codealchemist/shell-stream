@@ -38,7 +38,7 @@ module.exports = class Guest {
       })
   }
 
-  init(data, rinfo) {
+  init (data, rinfo) {
     const ip = rinfo.address
 
     console.log('--- FOUND HOST')
@@ -47,11 +47,11 @@ module.exports = class Guest {
     console.log()
 
     this.stream = udp({
-      address: '0.0.0.0', //address to bind to
-      unicast: ip, //unicast ip address to send to
-      port: 5555, //udp port to send to
-      bindingPort: 5556, //udp port to listen on. Default: port
-      reuseAddr: true //boolean: allow multiple processes to bind to the same address and port. Default: true
+      address: '0.0.0.0', // address to bind to
+      unicast: ip, // unicast ip address to send to
+      port: 5555, // udp port to send to
+      bindingPort: 5556, // udp port to listen on. Default: port
+      reuseAddr: true // boolean: allow multiple processes to bind to the same address and port. Default: true
     })
 
     // pipe whatever is received on stdin over udp
@@ -83,10 +83,10 @@ module.exports = class Guest {
 
     this.rl.on('line', (line) => {
       // const text = line.trim()
-      this.rl.prompt();
+      // this.rl.prompt();
     }).on('close', () => {
-      console.log('Have a great day!');
-      process.exit(0);
+      console.log('Have a great day!')
+      process.exit(0)
     })
   }
 }
