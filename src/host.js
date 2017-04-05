@@ -42,7 +42,7 @@ module.exports = class Host {
     const ip = rinfo.address
 
     console.log('--- FOUND GUEST')
-    console.log(data)
+    console.log(rinfo)
     console.log('-'.repeat(80))
     console.log()
 
