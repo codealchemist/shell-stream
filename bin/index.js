@@ -15,11 +15,11 @@ if (hasInvalidParams(params)) showUsage()
 if (params.host) {
   // start host
   const Host = require(path.join(__dirname, '../src/host'))
-  Host(params.host)
+  new Host(params.host)
 } else {
   // start guest
   const Guest = require(path.join(__dirname, '../src/guest'))
-  Guest(params._[0])
+  new Guest(params._[0])
 }
 
 // ------------------------------------------------------------------------
