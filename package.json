@@ -11,6 +11,7 @@
     "shell-stream": "bin/index.js"
   },
   "author": "Alberto Miranda",
+  "repository": "codealchemist/shell-stream",
   "license": "MIT",
   "dependencies": {
     "datagram-stream": "^1.1.0",
