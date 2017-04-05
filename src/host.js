@@ -54,7 +54,10 @@ module.exports = class Host {
     })
 
     // create new process to run command on
-    this.spawn = require('child_process').spawn('sh')
+    const osType = os.platform()
+    let shell = 'sh'
+    if (osType === 'win32') shell = 'powershell.exe'
+    this.spawn = require('child_process').spawn(shell)
 
     // set command line prompt
     this.rl = readline.createInterface({
